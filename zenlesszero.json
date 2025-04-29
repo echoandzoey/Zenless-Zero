@@ -51,7 +51,12 @@
             {
               "character": "铃",
               "metadata": { "status": "已读 2:25" },
-              "lines": ["坐车也算是奖励吗……", "一定要三个人吗？"]
+              "lines": ["坐车也算是奖励吗……"]
+            },
+            {
+              "character": "铃",
+              "metadata": { "status": "已读 2:25" },
+              "lines": ["一定要三个人吗？"]
             },
             {
               "character": "派派",

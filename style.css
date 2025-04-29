@@ -1,49 +1,64 @@
+html,
+body {
+  height: 100%; /* Ensure html and body take full height */
+  margin: 0;
+  padding: 0;
+  overflow: hidden; /* Prevent scrollbars on body */
+}
+
 body {
   font-family: sans-serif;
-  margin: 0;
-  background-color: #f0f0f0; /* Or a background image if desired */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
+  background-color: #000; /* Black background outside game container */
+  /* Remove flex centering from body */
 }
 
 #game-container {
-  width: 100%;
-  max-width: 600px; /* Adjust as needed */
-  height: 80vh;
-  max-height: 800px; /* Adjust as needed */
-  border: 1px solid #ccc;
-  background-color: #333; /* Darker background for contrast */
-  position: relative; /* Needed for positioning views */
-  overflow: hidden; /* Hide overflow */
-  display: flex; /* Use flexbox for alignment if needed */
-  justify-content: center;
-  align-items: center; /* Center content vertically */
-  cursor: pointer; /* Indicate the whole container is clickable for now */
+  width: 100vw; /* Full viewport width */
+  height: 100vh; /* Full viewport height */
+  border: none; /* Remove border */
+  background-color: #333; /* Default background, overridden by views/backgrounds */
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  display: flex; /* Add flex display to center children */
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
 }
 
 /* General View Container Styling */
 .view-container {
-  width: 100%; /* Occupy full width of game-container */
-  height: 100%; /* Occupy full height */
+  width: 100%;
+  height: 100%;
   box-sizing: border-box;
-  color: #333; /* Default text color, can be overridden */
-  position: absolute; /* Position all view containers absolutely */
+  position: absolute;
   top: 0;
   left: 0;
-  transition: opacity 0.3s ease; /* Add fade transition */
+  transition: opacity 0.3s ease;
   opacity: 1;
-  padding: 0; /* Remove padding here, add to specific views */
-  /* Remove background/border/radius from general container */
+  padding: 0;
+  display: flex; /* Keep flex here too for internal alignment */
+  justify-content: center;
+  align-items: center;
+  /* Base styles, specific views will override */
 }
 
 /* Mobile Chat Specific Container */
 #mobile-chat-view {
+  /* It is now a flex item of #game-container */
+  /* Remove position:relative and rely on flex centering */
+  position: static; /* Override absolute positioning from .view-container */
+  width: 90%; /* Max width relative to viewport */
+  max-width: 400px; /* Absolute max width like a phone */
+  height: 85vh; /* Height relative to viewport */
+  max-height: 700px; /* Absolute max height */
   display: flex;
   flex-direction: column;
-  background-color: #e5ddd5; /* WhatsApp-like background */
-  padding: 0; /* No padding on the main view container */
+  background-color: #e5ddd5;
+  padding: 0;
+  border-radius: 15px; /* Rounded corners for the phone look */
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Add shadow */
+  overflow: hidden; /* Ensure content stays within rounded corners */
+  flex-shrink: 0; /* Prevent it from shrinking if container space is tight */
 }
 
 #chat-history-header {
@@ -123,18 +138,11 @@ body {
 
 /* Keep interaction hint at bottom */
 #mobile-chat-view .interaction-hint {
-  background-color: #f0f0f0;
-  padding: 8px 15px;
-  text-align: center;
-  font-size: 0.9em;
-  color: #555;
-  border-top: 1px solid #ccc;
-  flex-shrink: 0; /* Prevent hint from shrinking */
-  position: absolute; /* Keep hint at bottom */
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  box-sizing: border-box;
+  position: relative; /* Change from absolute */
+  bottom: auto;
+  left: auto;
+  width: 100%; /* Take full width of the chat view */
+  /* Inherit background, padding, etc. from previous rules */
 }
 
 /* Mobile Chat Overlay (slight adjustment from previous) */
@@ -201,52 +209,93 @@ body {
   margin-top: 10px;
 }
 
+/* Background Image Class */
+#game-container.has-background {
+  background-size: contain; /* Change from cover to contain */
+  background-position: center center; /* Explicitly center */
+  background-repeat: no-repeat;
+  background-color: #000; /* Fallback, will show in letterbox/pillarbox areas */
+}
+
 /* Narration View Styling */
 #narration-view {
-  background-color: rgba(0, 0, 0, 0.6);
-  text-align: center;
-  font-size: 1.1em;
-  line-height: 1.5;
+  /* Ensure flex settings inherited from .view-container are suitable */
+  justify-content: center; /* Already default */
+  align-items: center; /* Already default */
+  /* Ensure background covers everything */
+  background-color: black;
+  color: white;
 }
 
 #narration-text {
-  margin-bottom: 15px;
+  margin-bottom: 30px; /* More space before hint */
+  max-width: 80%; /* Prevent text from being too wide */
+}
+
+/* Style hint for narration view */
+#narration-view .interaction-hint {
+  color: #aaa;
+  font-size: 0.9em;
+  margin-top: 20px;
+  position: static; /* Reset absolute positioning */
+  text-align: center; /* Center the hint */
 }
 
 /* Fixed Dialogue View Styling */
 #dialogue-fixed-view {
-  background-color: rgba(10, 10, 20, 0.7);
+  /* Align the inner content box to the bottom */
+  justify-content: flex-start; /* Align items to top (doesn't matter for single item) */
+  align-items: flex-end;
+  background-color: transparent;
+}
+
+/* The actual dialogue box at the bottom */
+#dialogue-fixed-view > .dialogue-box-content {
+  position: absolute; /* Position within the parent view container */
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.75); /* Darker overlay */
+  color: white;
+  padding: 15px 20px 10px 20px;
+  box-sizing: border-box;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 #fixed-dialogue-box {
-  border: 1px solid #555;
-  padding: 15px;
+  border: none; /* Remove inner box border */
+  padding: 0; /* Remove inner box padding */
   margin-bottom: 10px;
-  border-radius: 4px;
+  border-radius: 0;
 }
 
 #fixed-dialogue-character {
   font-weight: bold;
-  color: #aadeff;
+  color: #aadeff; /* Keep character color */
   display: block;
-  margin-bottom: 5px;
+  margin-bottom: 8px;
+  font-size: 1.1em;
 }
 
 #fixed-dialogue-line {
   margin-bottom: 10px;
+  font-size: 1em;
+  line-height: 1.5;
 }
 
-/* Reuse action description style */
 #dialogue-fixed-view .action-description {
-  color: #bbb; /* Slightly different color if needed */
+  color: #bbb;
+  font-size: 0.9em;
+  margin-top: 5px;
+  text-align: left; /* Align action description left */
 }
 
-/* Reuse interaction hint style */
-.view-container .interaction-hint {
+#dialogue-fixed-view .interaction-hint {
   font-size: 0.8em;
   color: #888;
   text-align: right;
-  margin-top: 10px;
+  margin-top: 5px;
+  position: static; /* Reset position */
 }
 
 /* Utility class */

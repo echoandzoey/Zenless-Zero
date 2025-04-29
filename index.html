@@ -25,15 +25,17 @@
 
       <!-- Container for Fixed Dialogue UI (Non-Mobile) -->
       <div id="dialogue-fixed-view" class="view-container hidden">
-        <!-- Structure for fixed dialogue will go here -->
-        <div id="fixed-dialogue-box">
-          <span id="fixed-dialogue-character">Character:</span>
-          <p id="fixed-dialogue-line">Dialogue line...</p>
-          <div id="fixed-dialogue-action" class="action-description">
-            Action description...
+        <!-- This inner div now holds the visible content at the bottom -->
+        <div class="dialogue-box-content">
+          <div id="fixed-dialogue-box">
+            <span id="fixed-dialogue-character">Character:</span>
+            <p id="fixed-dialogue-line">Dialogue line...</p>
+            <div id="fixed-dialogue-action" class="action-description">
+              Action description...
+            </div>
           </div>
+          <div class="interaction-hint">Click to continue...</div>
         </div>
-        <div class="interaction-hint">Click to continue...</div>
       </div>
 
       <!-- Add other containers as needed (Combat, CG, Comic, etc.) -->

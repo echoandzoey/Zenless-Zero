@@ -16,6 +16,7 @@ let gameData = null;
 let currentSceneIndex = 0;
 let currentEventIndex = 0;
 let currentSequenceIndex = 0; // For events with internal sequences (like dialogue)
+let currentBackgroundImage = ""; // Keep track of the background
 
 // --- Main Game Loop ---
 
@@ -85,6 +86,34 @@ function displayCurrentEvent() {
   if (currentEventIndex >= scene.events.length) return;
 
   const event = scene.events[currentEventIndex];
+
+  // --- Background Handling ---
+  // Reset background by default
+  gameContainer.classList.remove("has-background");
+  if (currentBackgroundImage) {
+    gameContainer.style.backgroundImage = "";
+    currentBackgroundImage = "";
+  }
+  // Set background if specified for this event type (example: dialogue_fixed_view)
+  if (event.type === "dialogue_fixed_view") {
+    // --- TODO: Get image URL dynamically from event data if possible ---
+    // For now, use the specific image provided
+    const imageUrl = "images/fixed_view_bg.png"; // <<< USE THE CORRECT PATH
+
+    if (imageUrl) {
+      console.log("Setting background image:", imageUrl);
+      gameContainer.classList.add("has-background");
+      gameContainer.style.backgroundImage = `url('${imageUrl}')`;
+      currentBackgroundImage = imageUrl;
+    } else {
+      // If no image specified for this fixed dialogue, maybe use a default dark BG?
+      gameContainer.style.backgroundColor = "#222"; // Example fallback
+    }
+  } else {
+    // Ensure default background color is set for other views if needed
+    gameContainer.style.backgroundColor = "#333"; // Reset to default dark bg
+  }
+  // --- End Background Handling ---
 
   // Hide all view containers before showing the current one
   hideAllViews();
