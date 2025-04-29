@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Zenless Zero Narrative</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div id="game-container">
+      <!-- Container for Mobile Chat UI -->
+      <div id="mobile-chat-view" class="view-container hidden">
+        <div id="chat-history-header">Mobile Chat</div>
+        <div id="chat-message-list">
+          <!-- Messages will be appended here by JS -->
+        </div>
+        <div class="interaction-hint">Click to continue...</div>
+      </div>
+
+      <!-- Container for Narration UI -->
+      <div id="narration-view" class="view-container hidden">
+        <p id="narration-text"></p>
+        <div class="interaction-hint">Click to continue...</div>
+      </div>
+
+      <!-- Container for Fixed Dialogue UI (Non-Mobile) -->
+      <div id="dialogue-fixed-view" class="view-container hidden">
+        <!-- Structure for fixed dialogue will go here -->
+        <div id="fixed-dialogue-box">
+          <span id="fixed-dialogue-character">Character:</span>
+          <p id="fixed-dialogue-line">Dialogue line...</p>
+          <div id="fixed-dialogue-action" class="action-description">
+            Action description...
+          </div>
+        </div>
+        <div class="interaction-hint">Click to continue...</div>
+      </div>
+
+      <!-- Add other containers as needed (Combat, CG, Comic, etc.) -->
+    </div>
+
+    <script type="module" src="main.js"></script>
+  </body>
+</html>

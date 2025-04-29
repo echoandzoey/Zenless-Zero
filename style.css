@@ -1,0 +1,256 @@
+body {
+  font-family: sans-serif;
+  margin: 0;
+  background-color: #f0f0f0; /* Or a background image if desired */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+#game-container {
+  width: 100%;
+  max-width: 600px; /* Adjust as needed */
+  height: 80vh;
+  max-height: 800px; /* Adjust as needed */
+  border: 1px solid #ccc;
+  background-color: #333; /* Darker background for contrast */
+  position: relative; /* Needed for positioning views */
+  overflow: hidden; /* Hide overflow */
+  display: flex; /* Use flexbox for alignment if needed */
+  justify-content: center;
+  align-items: center; /* Center content vertically */
+  cursor: pointer; /* Indicate the whole container is clickable for now */
+}
+
+/* General View Container Styling */
+.view-container {
+  width: 100%; /* Occupy full width of game-container */
+  height: 100%; /* Occupy full height */
+  box-sizing: border-box;
+  color: #333; /* Default text color, can be overridden */
+  position: absolute; /* Position all view containers absolutely */
+  top: 0;
+  left: 0;
+  transition: opacity 0.3s ease; /* Add fade transition */
+  opacity: 1;
+  padding: 0; /* Remove padding here, add to specific views */
+  /* Remove background/border/radius from general container */
+}
+
+/* Mobile Chat Specific Container */
+#mobile-chat-view {
+  display: flex;
+  flex-direction: column;
+  background-color: #e5ddd5; /* WhatsApp-like background */
+  padding: 0; /* No padding on the main view container */
+}
+
+#chat-history-header {
+  padding: 10px 15px;
+  background-color: #075e54; /* Dark green header */
+  color: white;
+  font-weight: bold;
+  text-align: center;
+  flex-shrink: 0; /* Prevent header from shrinking */
+}
+
+#chat-message-list {
+  flex-grow: 1; /* Allow message list to take available space */
+  overflow-y: auto; /* Enable vertical scrolling */
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+}
+
+.message-bubble {
+  padding: 8px 12px;
+  border-radius: 18px;
+  margin-bottom: 8px;
+  max-width: 75%;
+  line-height: 1.4;
+  word-wrap: break-word; /* Prevent long words from overflowing */
+  position: relative; /* For potential timestamp positioning */
+}
+
+.message-bubble .character-name {
+  font-size: 0.8em;
+  font-weight: bold;
+  margin-bottom: 3px;
+  display: block; /* Ensure it takes its own line if needed */
+  color: #555; /* Default, can be overridden */
+}
+
+.message-bubble .timestamp,
+.message-bubble .status {
+  font-size: 0.7em;
+  color: #999;
+  display: block; /* Or inline-block */
+  margin-top: 4px;
+  text-align: right;
+}
+
+.message-bubble.sent {
+  background-color: #dcf8c6; /* Light green for sent */
+  align-self: flex-end; /* Align right */
+  margin-left: auto; /* Push to right */
+  color: #303030;
+}
+
+.message-bubble.received {
+  background-color: #ffffff; /* White for received */
+  align-self: flex-start; /* Align left */
+  margin-right: auto; /* Push to left */
+  color: #303030;
+  border: 1px solid #f0f0f0; /* Slight border for definition */
+}
+
+.message-bubble.received .character-name {
+  color: #075e54; /* Or another color to distinguish */
+}
+
+.message-bubble.action {
+  background-color: transparent;
+  color: #888;
+  font-style: italic;
+  text-align: center;
+  align-self: center;
+  font-size: 0.9em;
+  width: 100%;
+  max-width: 100%;
+  padding: 5px 0;
+}
+
+/* Keep interaction hint at bottom */
+#mobile-chat-view .interaction-hint {
+  background-color: #f0f0f0;
+  padding: 8px 15px;
+  text-align: center;
+  font-size: 0.9em;
+  color: #555;
+  border-top: 1px solid #ccc;
+  flex-shrink: 0; /* Prevent hint from shrinking */
+  position: absolute; /* Keep hint at bottom */
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Mobile Chat Overlay (slight adjustment from previous) */
+#mobile-chat-overlay.chat-view {
+  position: relative; /* Changed from absolute */
+  bottom: 20px; /* Keep the offset from bottom */
+  width: 90%; /* Control width here */
+  max-width: 550px; /* Max width */
+  /* background-color, color, padding, border-radius etc. remain the same */
+}
+
+/* Basic overlay style */
+.chat-view {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  right: 20px;
+  background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent black */
+  color: white;
+  padding: 15px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+  cursor: pointer; /* Make it clear it's clickable */
+}
+
+.chat-header {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.9em;
+  color: #aaa;
+  margin-bottom: 10px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+#chat-character-name {
+  font-weight: bold;
+  color: #eee;
+}
+
+#chat-message-content {
+  margin-bottom: 10px;
+  min-height: 50px; /* Ensure some space even for short lines */
+}
+
+#chat-line {
+  margin: 0;
+  line-height: 1.4;
+}
+
+.action-description {
+  font-style: italic;
+  font-size: 0.9em;
+  color: #ccc;
+  margin-top: 10px;
+  text-align: center;
+}
+
+.interaction-hint {
+  font-size: 0.8em;
+  color: #aaa;
+  text-align: right;
+  margin-top: 10px;
+}
+
+/* Narration View Styling */
+#narration-view {
+  background-color: rgba(0, 0, 0, 0.6);
+  text-align: center;
+  font-size: 1.1em;
+  line-height: 1.5;
+}
+
+#narration-text {
+  margin-bottom: 15px;
+}
+
+/* Fixed Dialogue View Styling */
+#dialogue-fixed-view {
+  background-color: rgba(10, 10, 20, 0.7);
+}
+
+#fixed-dialogue-box {
+  border: 1px solid #555;
+  padding: 15px;
+  margin-bottom: 10px;
+  border-radius: 4px;
+}
+
+#fixed-dialogue-character {
+  font-weight: bold;
+  color: #aadeff;
+  display: block;
+  margin-bottom: 5px;
+}
+
+#fixed-dialogue-line {
+  margin-bottom: 10px;
+}
+
+/* Reuse action description style */
+#dialogue-fixed-view .action-description {
+  color: #bbb; /* Slightly different color if needed */
+}
+
+/* Reuse interaction hint style */
+.view-container .interaction-hint {
+  font-size: 0.8em;
+  color: #888;
+  text-align: right;
+  margin-top: 10px;
+}
+
+/* Utility class */
+.hidden {
+  opacity: 0;
+  pointer-events: none;
+}

@@ -1,0 +1,584 @@
+{
+  "gameTitle": "外环风波：燃油、时间与保险",
+  "version": "1.1",
+  "scenes": [
+    {
+      "sceneId": 1,
+      "title": "燃油饮挑战赛",
+      "events": [
+        {
+          "type": "mobile_chat",
+          "view_metadata": {
+            "style": "MobileUIOverlay",
+            "interactionHint": "choice"
+          },
+          "characters_present": ["派派", "铃"],
+          "sequence": [
+            {
+              "character": "派派",
+              "metadata": { "timestamp": "凌晨2:23" },
+              "lines": ["铃，在吗？那个……这个人有个请求想要拜托一下"]
+            },
+            { "action": "UI显示黄金涡旋外挂全息投影" },
+            {
+              "character": "派派",
+              "lines": [
+                "这个人之前接项目的时候，雇主作为报答，送了一个黄金涡旋喷环，还告诉我最近有个燃油饮比赛，挑战成功的话还可以再送一个……",
+                "这玩意装大钢牙上能飙到音速！但需要三人组队喝燃油饮……",
+                "你想参加吗……完赛之后这个人可以每周都带你去开车兜风……"
+              ]
+            },
+            {
+              "character": "铃",
+              "metadata": { "status": "已读 2:25" },
+              "lines": ["坐车也算是奖励吗……", "一定要三个人吗？"]
+            },
+            {
+              "character": "派派",
+              "metadata": { "status": "秒回" },
+              "lines": ["这次是真的！老板说三人报名送免费保险！"]
+            },
+            { "action": "UI显示参赛广告截图，底部小字模糊" },
+            {
+              "character": "派派",
+              "lines": ["伯尼斯已经答应了！她说能喝二十杯！"]
+            }
+          ]
+        },
+        {
+          "type": "narration",
+          "text": "到了比赛的这一天，铃、派派、伯妮斯如约来到店铺门口，非常热闹。"
+        },
+        {
+          "type": "dialogue_fixed_view",
+          "view_metadata": {
+            "style": "FrontView",
+            "interactionHint": "choice"
+          },
+          "characters_present": ["派派", "伯尼斯", "铃"],
+          "sequence": [
+            {
+              "character": "派派",
+              "line": "哈啊——现在的商家真狡猾……喝燃油饮比赛都还要搞三人一起参加……真是麻烦你们了",
+              "action_description": "背靠卡车轮胎打哈欠，手指懒洋洋地戳着广告牌"
+            },
+            {
+              "character": "伯尼斯",
+              "line": "火山灰特调！陨铁风味限定款！这个加了电磁脉冲碎片的看起来会冒火花！",
+              "action_description": "蹦跳着凑近柜台，鼻尖几乎贴在菜单上"
+            },
+            {
+              "character": "伯尼斯",
+              "line": "派派！喝完二十杯能的话可不可以拿两个黄金涡旋！",
+              "action_description": "突然转身高举杯子"
+            },
+            {
+              "character": "铃",
+              "line": "派派，我们三个人，真的可以喝完吗…… 不过这个条款最后的小字写的是什么，你们能看清楚吗",
+              "action_description": "仔细阅读规章条款"
+            },
+            {
+              "character": "派派",
+              "line": "年轻人别总盯着字看……这人像你们这么大时……可是参加了好多外环的比赛呢……"
+            },
+            {
+              "character": "派派",
+              "line": "真想要那个黄金涡旋，我的大钢牙离最完美的艺术品只差最后一步了，虽然它已经很完美了！…"
+            },
+            {
+              "character": "伯尼斯",
+              "line": "铃！这杯喝下去舌头会麻酥酥的！像被微型空洞舔过！你要不要试试——",
+              "action_description": "已经灌下三杯荧光绿的燃油饮，瞳孔闪着亢奋的光"
+            },
+            {
+              "character": "铃",
+              "line": "等等我们还没有开始，先不要开始喝起来哇……"
+            },
+            { "character": "派派", "line": "年轻人真是活力满满呢" },
+            {
+              "character": "派派",
+              "line": "等赢了比赛……给我的大钢牙装上双黄金涡旋，带你们好好兜风"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "sceneId": 2,
+      "title": "擂台突发事件",
+      "events": [
+        {
+          "type": "narration",
+          "text": "在她们刚领到燃油饮打算参加的时候，前面参加比赛的人却和老板吵了起来。动静越来越大..."
+        },
+        {
+          "type": "comic_panel",
+          "asset_ref": "comic_shop_argument_panel_1",
+          "description": "闪过店长的保险纹身，进行暗示",
+          "interaction": "click_to_continue"
+        },
+        {
+          "type": "dialogue_fixed_view",
+          "view_metadata": {
+            "style": "FrontView_NearCounter",
+            "interactionHint": "auto_advance_or_click"
+          },
+          "characters_present": ["醉酒参赛者", "店长", "伯尼斯", "派派"],
+          "sequence": [
+            {
+              "character": "醉酒参赛者",
+              "line": "老子舌头都喝麻了！你这破钟绝对有问题！",
+              "action_description": "摔碎杯子，手表弹出全息时间10:07"
+            },
+            {
+              "character": "店长",
+              "line": "规则写得很清楚——（敲击计时器10:20）超时就是超时！",
+              "action_description": "擦拭柜台，指缝闪过保险纹身"
+            },
+            {
+              "character": "店长",
+              "line": "根据条款第37条，你们得赔杯子的钱..."
+            },
+            {
+              "character": "醉酒参赛者",
+              "line": "你这个人怎么不遵守规矩，我特地从城区跑来你们这个地方参加比赛，谁能想到你如此耍赖！",
+              "metadata": { "emotion": "非常愤怒" }
+            },
+            {
+              "character": "伯尼斯",
+              "line": "哇！这个齿轮组也是燃油饮的形状——",
+              "action_description": "踮脚凑近计时器，瞳孔映出齿轮虚影"
+            },
+            {
+              "character": "派派",
+              "line": "现在的年轻人啊...（慢悠悠叹气）喝个饮料还要吵架...",
+              "action_description": "瘫坐在燃油饮桶上"
+            },
+            {
+              "character": "派派",
+              "line": "想当年我修车时...诶，怎么地面震感那么严重",
+              "action_description": "用扳手敲击地面"
+            }
+          ]
+        },
+        {
+          "type": "narration",
+          "text": "一声巨响，地面突然塌陷，发生了空洞，大家突然都掉到空洞内部了。"
+        }
+      ]
+    },
+    {
+      "sceneId": 3,
+      "title": "进入空洞战斗",
+      "events": [
+        {
+          "type": "narration",
+          "text": "由于巨大的动静，地面塌陷，三人前往空洞拯救参赛选手。"
+        },
+        {
+          "type": "combat",
+          "encounter_ref": "hollow_rescue_1",
+          "player_characters": ["派派", "伯尼斯", "铃"],
+          "interaction": "combat_gameplay",
+          "dialogue_during": [
+            {
+              "character": "参赛者A",
+              "line": "救命！早知道就买那个空洞保险了——！",
+              "action_description": "抓着漂浮的广告牌残片",
+              "timing_hint": "early_combat"
+            },
+            {
+              "character": "参赛者B",
+              "line": "现在空洞灾害怎么越来越频繁发生了？！谁来救救我啊",
+              "action_description": "被紫色能量流卷住脚踝",
+              "timing_hint": "during_combat"
+            },
+            {
+              "character": "参赛者C (吵架者)",
+              "line": "店长这个王八蛋呢？你出来，我和你同归于尽",
+              "timing_hint": "during_combat"
+            },
+            {
+              "character": "派派",
+              "line": "别担心...（慢悠悠）年轻时掉进过空洞也不是什么坏事...",
+              "action_description": "单手抓着卡车后视镜，另一只手拧螺丝",
+              "timing_hint": "player_action_response"
+            },
+            {
+              "character": "派派",
+              "line": "至少还有我们在",
+              "timing_hint": "follow_up"
+            },
+            {
+              "character": "伯尼斯",
+              "line": "铃！左边的让我来！",
+              "action_description": "踩着爆炸的燃油饮瓶滑翔",
+              "timing_hint": "player_switch_or_skill"
+            }
+          ]
+        },
+        {
+          "type": "narration",
+          "text": "一场激战结束之后，大家都回到了地面上，众人还没有来得及沉浸在灾后重生的喜悦当中，刚刚吵架的两个人又开始嚷嚷起来了。店长和参赛选手找来派派三人评理。"
+        }
+      ]
+    },
+    {
+      "sceneId": 4,
+      "title": "发现外环时间系统不对",
+      "events": [
+        {
+          "type": "dialogue_fixed_view",
+          "view_metadata": {
+            "style": "FrontView_Group",
+            "interactionHint": "choice"
+          },
+          "characters_present": ["店长", "派派", "参赛者", "铃", "伯尼斯"],
+          "sequence": [
+            {
+              "character": "店长",
+              "line": "各位请看——（手指划动投影）这是所有选手的饮用时间记录。根据外环主城区的标准时间……",
+              "action_description": "擦拭着完好无损的眼镜，语气平静"
+            },
+            { "character": "店长", "line": "我们可没有做任何手脚" },
+            {
+              "character": "店长",
+              "line": "根据显示，这位参赛选手确实没有在限定的时间之内完成"
+            },
+            {
+              "character": "店长",
+              "line": "不信你让刚刚这位英雄评评理（指向派派）"
+            },
+            {
+              "character": "派派",
+              "line": "诶，那个，这个人这里显示的时间和店长也是一样的……",
+              "metadata": { "emotion": "茫然&不好意思" }
+            },
+            {
+              "character": "参赛者",
+              "line": "你胡说，我这个表可是在主城区刚刚买的新表，怎么可能出问题，我刚来外环就说我时间不对，你们真是乡巴佬吧！",
+              "metadata": { "emotion": "非常愤怒" }
+            },
+            {
+              "character": "铃",
+              "line": "我进入外环后一直用城区的授时系统同步……我的时间反而和这位先生的是一样的",
+              "action_description": "举起手腕，银色手环投射出城区时间【10:20】"
+            },
+            {
+              "character": "伯尼斯",
+              "line": "我手机上的时间显示的和派派还有店长是一样的。我们外环的人用的时间都是根据本地的大本钟来设定的，所以我们的都是一样……"
+            },
+            {
+              "character": "伯尼斯",
+              "line": "但是你们城区来的人都是一样的？真是奇怪"
+            },
+            {
+              "character": "派派",
+              "line": "这个情况，我好像之前遇到过，应该是大本钟出了问题"
+            },
+            {
+              "character": "派派",
+              "line": "不知道是不是因为前不久大本钟维修的原因，真是奇怪……"
+            },
+            {
+              "character": "铃",
+              "line": "等等……如果外环所有人的时间都比平时快了一倍，那么……"
+            },
+            {
+              "character": "伯尼斯",
+              "line": "那么……肯定有很多工作都受到影响了"
+            },
+            {
+              "character": "派派",
+              "line": "糟糕……东区矿区的人，他们每次爆破的时候需要计算时间，如果按照这个快一倍多时间来工作的话……"
+            },
+            {
+              "character": "铃",
+              "line": "我们必须得先去矿区！不然大规模的爆破只会让外环更加不牢固，空洞灾害会更大爆发的！"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "sceneId": 5,
+      "title": "矿区救援行动",
+      "events": [
+        {
+          "type": "narration",
+          "text": "为了避免矿区的塌陷，一行人又赶快来到了矿区。但是到来的时候却发现这里非常混乱。矿工防护服印着“以太远洋保险”字样，岩壁上贴满保险广告传单。"
+        },
+        {
+          "type": "dialogue_free_view",
+          "environment_ref": "mine_entrance_chaotic",
+          "entry_prompt": "调查矿区情况，和工作人员对话。",
+          "interaction": "free_explore_interact"
+        },
+        {
+          "type": "comic_panel",
+          "asset_ref": "comic_mine_action_panel_1",
+          "description": "[派派用扳手卡住滚落的巨石，伯妮斯拽着铃跳上悬浮的传送带]",
+          "interaction": "click_to_continue"
+        },
+        {
+          "type": "dialogue_fixed_view",
+          "view_metadata": { "style": "DynamicActionFocus" },
+          "characters_present": ["铃", "派派", "伯尼斯"],
+          "sequence": [
+            {
+              "character": "铃",
+              "line": "所有防护服都印着以太保险标志……（广告弹出【工伤即刻赔付：断指八折，殒命全免】）怎么会有这么多的广告！",
+              "action_description": "手环扫描岩壁保险广告"
+            },
+            {
+              "character": "派派",
+              "line": "喂！你们按哪个时间撤离的？（扯开矿工防护服，内侧缝着加速的齿轮表盘）果然用的是快一倍的表……",
+              "action_description": "踹开变形的矿车闸门，露出昏迷矿工"
+            },
+            {
+              "character": "伯尼斯",
+              "line": "紫色闪光！是未引爆的采矿雷管！（抓起燃油饮空瓶砸过去）派派！小心--",
+              "action_description": "突然指向隧道深处"
+            },
+            {
+              "character": "伯尼斯",
+              "line": "我要把这条路炸了，不然这条路会影响到别的地方！"
+            }
+          ]
+        },
+        {
+          "type": "combat",
+          "encounter_ref": "mine_hollow_eikons_1",
+          "player_characters": ["派派", "伯尼斯"],
+          "interaction": "combat_gameplay",
+          "dialogue_during": [
+            {
+              "character": "派派",
+              "line": "最近一爆炸就引来空洞，外环真是越来越不稳定了",
+              "timing_hint": "combat_start"
+            },
+            {
+              "character": "伯尼斯",
+              "line": "等这个战斗结束了要去大本钟那边看一看才行",
+              "timing_hint": "mid_combat"
+            }
+          ]
+        },
+        {
+          "type": "cg_animation",
+          "asset_ref": "cg_mine_combat_victory",
+          "description": "战斗结束，派派和伯妮斯轻松解决以骇，并且决定尽快前往大本钟",
+          "interaction": "click_to_continue"
+        }
+      ]
+    },
+    {
+      "sceneId": 6,
+      "title": "大本钟真相",
+      "events": [
+        {
+          "type": "narration",
+          "text": "转换场景：三个人来到了广场前面，前往大本钟查看。"
+        },
+        {
+          "type": "dialogue_free_view",
+          "environment_ref": "city_square_big_ben",
+          "entry_prompt": "和广场上的NPC聊天，了解时间异常的影响，然后前往大本钟。",
+          "interaction": "free_explore_interact",
+          "completion_trigger": "approach_big_ben"
+        },
+        {
+          "type": "cg_animation",
+          "asset_ref": "cg_big_ben_reveal",
+          "description": "众人来到大本钟前面，果然它出了问题，派派却发现这个指针怎么那么熟悉……",
+          "interaction": "click_to_continue"
+        },
+        {
+          "type": "dialogue_fixed_view",
+          "view_metadata": {
+            "style": "FrontView_BigBen",
+            "interactionHint": "choice"
+          },
+          "characters_present": ["铃", "派派", "伯尼斯"],
+          "sequence": [
+            { "character": "铃", "line": "你是说……这个钟表是你修的？" },
+            {
+              "character": "派派",
+              "line": "这雨刮器的改装纹路……是这个人呢上个月接的私活没错"
+            },
+            { "character": "伯尼斯", "line": "派派，你怎么还会修表了" },
+            {
+              "character": "派派",
+              "line": "这个，那个人让我替换钟表的指针，换成雨刮器。说是为了私人博物馆藏品，我还觉得他特别有品来着，但他没说要换进钟楼里面啊"
+            },
+            {
+              "character": "伯尼斯",
+              "line": "所以你给杀人钟表做了美甲？！这玩意刮的不是雨水，是外环人的命吧！"
+            },
+            {
+              "character": "派派",
+              "line": "这个人也不是故意的，他说报酬是一个黄金涡旋，那可是一个黄金涡旋诶…………我的大钢牙就缺这个了"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "sceneId": 7,
+      "title": "最终阴谋爆发",
+      "events": [
+        {
+          "type": "comic_panel",
+          "asset_ref": "comic_conspiracy_reveal_sequence",
+          "interaction": "click_to_advance_panels",
+          "content_overlay": [
+            { "panel": 1, "narration": "突然一个熟悉的声音响起。" },
+            {
+              "panel": 2,
+              "dialogue": {
+                "character": "店长",
+                "line": "你以为自己改造的是钟表？（抓出派派的设计图）不，你改造的是保险触发率！"
+              }
+            },
+            {
+              "panel": 3,
+              "dialogue": {
+                "character": "铃",
+                "line": "举办比赛吸引人群，加速矿区崩塌……就为卖保险？！"
+              }
+            },
+            {
+              "panel": 4,
+              "dialogue": {
+                "character": "店长",
+                "line": "精确点说——每场空洞灾害都能让买保险的人数至少增加100个，我司的股价上涨0.73%！"
+              }
+            },
+            {
+              "panel": 4,
+              "dialogue": {
+                "character": "店长",
+                "line": "嘿嘿，而且--我们天才的条款可不会让这些人拿到赔偿款"
+              }
+            },
+            {
+              "panel": 5,
+              "dialogue": {
+                "character": "派派",
+                "line": "真是太可恶了，为了利益，连人命都不顾了"
+              }
+            },
+            {
+              "panel": 6,
+              "dialogue": {
+                "character": "店长",
+                "line": "事后追查，没有人能够追到我的头上，而身为改装师的你，将成为最大的罪魁祸首，哈哈！！"
+              }
+            },
+            {
+              "panel": 7,
+              "narration": "一阵猛烈的爆炸声，大本钟和刚刚得意洋洋的店长一齐掉入了空洞之内。"
+            },
+            {
+              "panel": 8,
+              "dialogue": {
+                "character": "店长",
+                "line": "啊啊啊啊啊啊-----怎么回事，怎么我也掉进去了！"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "sceneId": 8,
+      "title": "大本钟BOSS决战",
+      "events": [
+        {
+          "type": "narration",
+          "text": "空洞爆发：远处的爆炸起了连锁反应，在这边也引发了空洞灾害。大本钟被吞入空洞，加上自己谐振的频率不对，加快了自己以太侵蚀的速度，变成了大boss。"
+        },
+        {
+          "type": "cg_animation",
+          "asset_ref": "cg_big_ben_boss_transform",
+          "description": "播放代理人（店长）和大本钟被以太侵蚀，然后变成大boss的场景",
+          "interaction": "click_to_continue"
+        },
+        {
+          "type": "combat",
+          "encounter_ref": "boss_big_ben_insurancorp",
+          "player_characters": ["派派", "伯尼斯"],
+          "interaction": "combat_gameplay",
+          "dialogue_during": [
+            {
+              "character": "伯尼斯",
+              "line": "这店长怎么不给自己的脑子也买一份保险？",
+              "timing_hint": "boss_intro"
+            },
+            {
+              "character": "派派",
+              "line": "现在的年轻人都怎么了！怎么能欺骗我？",
+              "timing_hint": "mid_combat"
+            },
+            {
+              "character": "伯尼斯",
+              "line": "你的报表要清零了",
+              "timing_hint": "boss_phase_change"
+            }
+          ]
+        },
+        {
+          "type": "cg_animation",
+          "asset_ref": "cg_boss_defeat_final_blow",
+          "description": "派派一击砍下大boss的手臂，“把我的雨刮器还给我！再也不接改装单了！！”",
+          "interaction": "click_to_continue"
+        }
+      ]
+    },
+    {
+      "sceneId": 9,
+      "title": "终幕余韵",
+      "events": [
+        {
+          "type": "narration",
+          "text": "一切都结束了，派派把之前拿到的黄金涡旋改造了重新换成了新的大本钟的指针，并且把燃油饮店老板的那个黄金涡旋拿来当作大本钟的铃声，现在，每次报时的时候，大本钟都会发出专属于机车党的炫酷轰鸣————"
+        },
+        {
+          "type": "dialogue_fixed_view",
+          "view_metadata": {
+            "style": "FrontView_Relaxed",
+            "interactionHint": "final_dialogue"
+          },
+          "characters_present": ["伯尼斯", "铃", "派派"],
+          "sequence": [
+            {
+              "character": "伯尼斯",
+              "line": "这新钟声够劲！比之前死气沉沉的‘铛铛铛’好多了！（模仿引擎轰鸣）轰隆隆——！耳朵都要怀孕了！"
+            },
+            {
+              "character": "铃",
+              "line": "虽然吵得脑仁疼……（钟声突然炸响，她手一抖泼出半杯）但至少现在矿工不会再因为时间错乱引发危险了。"
+            },
+            {
+              "character": "派派",
+              "line": "这人可是特意调过谐振频率……（突然咧嘴笑）保证那什么企业公司的家伙喝茶时杯子抖得端不稳！"
+            },
+            {
+              "character": "伯尼斯",
+              "line": "再来点节奏！（把空杯扣头上当头盔）派派！把钟声改成死亡重金属版本！"
+            },
+            {
+              "character": "铃",
+              "line": "饶了外环居民的耳朵吧……（小声）不过凌晨三点用这声音当闹钟，应该比空洞灾害警报有效。"
+            },
+            {
+              "character": "派派",
+              "line": "哈，是不是空洞灾害警报声也可以改一改呢"
+            },
+            { "character": "铃, 伯尼斯", "line": "派派，别---！" }
+          ]
+        }
+      ]
+    }
+  ]
+}
