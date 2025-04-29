@@ -3,9 +3,11 @@ import { getGameData } from "./data.js";
 import { renderMobileChat } from "./mobileChatHandler.js";
 import { renderNarration } from "./narrationHandler.js";
 import { renderDialogueFixedView } from "./dialogueFixedViewHandler.js";
+import { renderComicPanel } from "./comicPanelHandler.js"; // Import comic handler
+import { renderCGAnimation } from "./cgAnimationHandler.js"; // Import CG handler
+import { renderCombat } from "./combatHandler.js"; // Import Combat handler
 // Import other handlers as they are created
 // import { renderCombat } from './combatHandler.js';
-// import { renderCG } from './cgHandler.js';
 
 // DOM Elements
 const gameContainer = document.getElementById("game-container");
@@ -47,16 +49,27 @@ function advanceNarrative() {
   const currentScene = gameData.scenes[currentSceneIndex];
   const currentEvent = currentScene.events[currentEventIndex];
 
-  // Check if the current event has an internal sequence (like dialogue)
-  if (
-    currentEvent.sequence &&
-    currentSequenceIndex < currentEvent.sequence.length - 1
-  ) {
-    // Advance within the sequence
+  // Determine the sequence source and length for the current event
+  let sequenceSource = null;
+  let sequenceLength = 0;
+
+  // Only check for .sequence (used by mobile_chat, dialogue_fixed_view)
+  if (currentEvent.sequence) {
+    sequenceSource = currentEvent.sequence;
+    sequenceLength = currentEvent.sequence.length;
+  }
+  // REMOVED check for content_overlay here
+  // Add checks for other potential sequence sources if needed later
+
+  const eventHasInternalSequence = sequenceLength > 0;
+
+  // If the event has a sequence and we are not at the end of it, advance the sequence index.
+  if (eventHasInternalSequence && currentSequenceIndex < sequenceLength - 1) {
     currentSequenceIndex++;
     console.log(`Advancing sequence to index: ${currentSequenceIndex}`);
   } else {
-    // Reset sequence index and advance to the next event
+    // Otherwise, reset sequence index and advance to the next event.
+    // This now also applies immediately to comic_panel
     currentSequenceIndex = 0;
     currentEventIndex++;
     console.log(`Advancing event to index: ${currentEventIndex}`);
@@ -94,24 +107,22 @@ function displayCurrentEvent() {
     gameContainer.style.backgroundImage = "";
     currentBackgroundImage = "";
   }
-  // Set background if specified for this event type (example: dialogue_fixed_view)
+  // Set background only for dialogue_fixed_view
   if (event.type === "dialogue_fixed_view") {
-    // --- TODO: Get image URL dynamically from event data if possible ---
-    // For now, use the specific image provided
-    const imageUrl = "images/fixed_view_bg.png"; // <<< USE THE CORRECT PATH
-
+    const imageUrl = "images/fixed_view_bg.png";
     if (imageUrl) {
       console.log("Setting background image:", imageUrl);
       gameContainer.classList.add("has-background");
       gameContainer.style.backgroundImage = `url('${imageUrl}')`;
       currentBackgroundImage = imageUrl;
     } else {
-      // If no image specified for this fixed dialogue, maybe use a default dark BG?
-      gameContainer.style.backgroundColor = "#222"; // Example fallback
+      gameContainer.style.backgroundColor = "#222";
     }
   } else {
-    // Ensure default background color is set for other views if needed
-    gameContainer.style.backgroundColor = "#333"; // Reset to default dark bg
+    // Ensure appropriate background color for non-image views
+    // This might vary based on the view itself (e.g., narration is black)
+    // Setting a default here, but handlers can override if needed.
+    gameContainer.style.backgroundColor = "#000"; // Default to black if no image
   }
   // --- End Background Handling ---
 
@@ -128,29 +139,29 @@ function displayCurrentEvent() {
       renderMobileChat(event, currentSequenceIndex);
       break;
     case "narration":
-      // Narration events don't have an internal sequence index
       renderNarration(event);
       break;
     case "dialogue_fixed_view":
       renderDialogueFixedView(event, currentSequenceIndex);
       break;
+    case "comic_panel":
+      renderComicPanel(event);
+      break;
+    case "cg_animation":
+      renderCGAnimation(event);
+      break;
+    case "combat":
+      renderCombat(event);
+      break;
     // --- Add cases for other event types ---
     // case 'combat':
     //     renderCombat(event);
-    //     break;
-    // case 'cg_animation':
-    //     renderCG(event);
-    //     break;
-    // case 'comic_panel':
-    //     // Might need sequence index depending on implementation
-    //     renderComic(event, currentSequenceIndex);
     //     break;
     // case 'dialogue_free_view':
     //     renderFreeDialogue(event);
     //     break;
     default:
       console.warn(`Unhandled event type: ${event.type}`);
-      // Optionally display a placeholder or error
       showPlaceholder(`Unsupported event type: ${event.type}`);
       break;
   }
