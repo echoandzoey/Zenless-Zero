@@ -137,13 +137,13 @@
           "text": "在她们刚领到燃油饮打算参加的时候，前面参加比赛的人却和老板吵了起来。动静越来越大..."
         },
         {
-          "type": "narration",
+          "type": "comic_panel",
           "asset_ref": "comic_shop_argument_panel_1",
-          "description": "进入漫画，展示店长和选手吵架场景",
+          "description": "闪过店长的保险纹身，进行暗示",
           "interaction": "click_to_continue"
         },
         {
-          "type": "comic_panel",
+          "type": "dialogue_fixed_view",
           "view_metadata": {
             "style": "FrontView_NearCounter",
             "interactionHint": "auto_advance_or_click"

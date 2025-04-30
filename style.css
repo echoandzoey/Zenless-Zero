@@ -30,6 +30,9 @@ body {
   width: 100%;
   height: 100%;
   box-sizing: border-box;
+  position: absolute;
+  top: 0;
+  left: 0;
   transition: opacity 0.3s ease;
   opacity: 1;
   padding: 0;
@@ -41,21 +44,21 @@ body {
 
 /* Mobile Chat Specific Container */
 #mobile-chat-view {
-  /* Reconfirming it's a flex item centered by #game-container */
-  justify-content: center;
-  align-items: center;
-  width: 90%;
-  max-width: 400px;
-  height: 85vh;
-  max-height: 700px;
+  /* It is now a flex item of #game-container */
+  /* Remove position:relative and rely on flex centering */
+  position: static; /* Override absolute positioning from .view-container */
+  width: 90%; /* Max width relative to viewport */
+  max-width: 400px; /* Absolute max width like a phone */
+  height: 85vh; /* Height relative to viewport */
+  max-height: 700px; /* Absolute max height */
   display: flex;
   flex-direction: column;
   background-color: #e5ddd5;
   padding: 0;
-  border-radius: 15px;
-  box-shadow: 0 5px 15px rgba(118, 90, 90, 0.3);
-  overflow: hidden;
-  flex-shrink: 0;
+  border-radius: 15px; /* Rounded corners for the phone look */
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Add shadow */
+  overflow: hidden; /* Ensure content stays within rounded corners */
+  flex-shrink: 0; /* Prevent it from shrinking if container space is tight */
 }
 
 #chat-history-header {
@@ -295,169 +298,8 @@ body {
   position: static; /* Reset position */
 }
 
-/* Comic Panel View Styling */
-#comic-panel-view {
-  /* Override view-container alignment */
-  justify-content: flex-start;
-  align-items: stretch; /* Stretch items to full width initially */
-  background-color: black;
-  color: white;
-  padding: 20px;
-  position: relative;
-  overflow-y: auto; /* Allow scrolling if bubbles overflow */
-  flex-direction: column; /* Stack bubbles vertically */
-  display: flex; /* Make it a flex container */
-}
-
-/* Remove absolute positioning logic */
-/* .comic-bubble.pos-* {} */
-
-.comic-bubble {
-  background-color: #f0f0f0;
-  color: #333;
-  padding: 10px 15px;
-  border-radius: 8px;
-  border: 1px solid #ccc;
-  margin-bottom: 25px; /* Increased space between bubbles */
-  max-width: 60%; /* Allow slightly wider bubbles */
-  position: relative; /* Change from absolute to relative */
-  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
-  font-size: 0.9em;
-  line-height: 1.3;
-  /* Staggering margin-top */
-  margin-top: 10px;
-}
-
-/* Left Aligned Bubble */
-.comic-bubble.bubble-left {
-  margin-right: auto; /* Push to left */
-  margin-left: 5%; /* Indent from edge */
-}
-
-/* Right Aligned Bubble */
-.comic-bubble.bubble-right {
-  margin-left: auto; /* Push to right */
-  margin-right: 5%; /* Indent from edge */
-  margin-top: 0px; /* Reduce top margin slightly for staggering */
-}
-
-/* Bubble content styles remain the same */
-.comic-bubble .bubble-character {
-  font-weight: bold;
-  display: block;
-  margin-bottom: 5px;
-  color: #0056b3; /* Example character color */
-}
-
-.comic-bubble .bubble-line {
-  margin-bottom: 5px;
-}
-
-.comic-bubble .bubble-action {
-  font-style: italic;
-  font-size: 0.85em;
-  color: #555;
-}
-
-#comic-panel-view .interaction-hint {
-  color: #aaa;
-  font-size: 0.9em;
-  position: sticky; /* Keep hint visible at bottom during scroll */
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  text-align: center;
-  background-color: black; /* Match background */
-  padding: 10px 0;
-  margin-top: auto; /* Push below content */
-}
-
-/* CG Animation View Styling */
-#cg-animation-view {
-  justify-content: center;
-  align-items: center;
-  flex-direction: column; /* Stack elements vertically */
-  background-color: #111; /* Dark background */
-  color: white;
-  padding: 20px;
-}
-
-#cg-video-placeholder {
-  border: 2px dashed #555;
-  padding: 40px;
-  margin-bottom: 20px;
-  color: #888;
-  text-align: center;
-}
-
-#cg-description-text {
-  font-style: italic;
-  color: #ccc;
-  text-align: center;
-  margin-bottom: 20px;
-  max-width: 70%;
-}
-
-#cg-animation-view .interaction-hint {
-  color: #aaa;
-  font-size: 0.9em;
-  margin-top: auto; /* Push hint to bottom if container has extra space */
-  position: static;
-  text-align: center;
-}
-
-/* Combat View Styling (Similar to CG) */
-#combat-view {
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  background-color: #200; /* Dark red background? */
-  color: white;
-  padding: 20px;
-}
-
-#combat-video-placeholder {
-  border: 2px dashed #855;
-  padding: 40px;
-  margin-bottom: 20px;
-  color: #aaa;
-  text-align: center;
-}
-
-#combat-dialogue-display {
-  font-style: italic;
-  color: #ddd;
-  background-color: rgba(0, 0, 0, 0.3);
-  padding: 10px;
-  border-radius: 5px;
-  margin-bottom: 20px;
-  max-width: 70%;
-  max-height: 100px; /* Limit height */
-  overflow-y: auto; /* Add scroll if needed */
-  text-align: center;
-}
-
-#combat-view .interaction-hint {
-  color: #aaa;
-  font-size: 0.9em;
-  margin-top: auto;
-  position: static;
-  text-align: center;
-}
-
 /* Utility class */
 .hidden {
   opacity: 0;
   pointer-events: none;
-}
-
-/* Style the combat video element */
-#combat-video {
-  display: block; /* Prevents extra space below */
-  width: 80%; /* Adjust width as needed */
-  max-width: 960px; /* Optional max width */
-  height: auto; /* Maintain aspect ratio */
-  margin: 20px auto; /* Center horizontally with some vertical margin */
-  background-color: #111; /* Background if video is transparent/loading */
-  border: 1px solid #444; /* Optional border */
 }
