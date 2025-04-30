@@ -3,6 +3,7 @@ import { getGameData } from "./data.js";
 import { renderMobileChat } from "./mobileChatHandler.js";
 import { renderNarration } from "./narrationHandler.js";
 import { renderDialogueFixedView } from "./dialogueFixedViewHandler.js";
+import { renderComicPanel } from "./comicPanelHandler.js";
 // Import other handlers as they are created
 // import { renderCombat } from './combatHandler.js';
 // import { renderCG } from './cgHandler.js';
@@ -141,10 +142,10 @@ function displayCurrentEvent() {
     // case 'cg_animation':
     //     renderCG(event);
     //     break;
-    // case 'comic_panel':
-    //     // Might need sequence index depending on implementation
-    //     renderComic(event, currentSequenceIndex);
-    //     break;
+    case "comic_panel":
+      // Might need sequence index depending on implementation (currently unused by handler)
+      renderComicPanel(event);
+      break;
     // case 'dialogue_free_view':
     //     renderFreeDialogue(event);
     //     break;

@@ -137,52 +137,69 @@
           "text": "在她们刚领到燃油饮打算参加的时候，前面参加比赛的人却和老板吵了起来。动静越来越大..."
         },
         {
-          "type": "comic_panel",
-          "asset_ref": "comic_shop_argument_panel_1",
-          "description": "闪过店长的保险纹身，进行暗示",
-          "interaction": "click_to_continue"
+          "type": "narration",
+
+          "text": "闪过店长的保险纹身，进行暗示"
         },
         {
-          "type": "dialogue_fixed_view",
-          "view_metadata": {
-            "style": "FrontView_NearCounter",
-            "interactionHint": "auto_advance_or_click"
-          },
-          "characters_present": ["醉酒参赛者", "店长", "伯尼斯", "派派"],
-          "sequence": [
+          "type": "comic_panel",
+          "asset_ref": "comic_shop_argument_panel_1",
+          "interaction": "auto_advance_or_click",
+          "content_overlay": [
             {
-              "character": "醉酒参赛者",
-              "line": "老子舌头都喝麻了！你这破钟绝对有问题！",
-              "action_description": "摔碎杯子，手表弹出全息时间10:07"
+              "panel": 1,
+              "dialogue": {
+                "character": "醉酒参赛者",
+                "line": "老子舌头都喝麻了！你这破钟绝对有问题！",
+                "action_description": "摔碎杯子，手表弹出全息时间10:07"
+              }
             },
             {
-              "character": "店长",
-              "line": "规则写得很清楚——（敲击计时器10:20）超时就是超时！",
-              "action_description": "擦拭柜台，指缝闪过保险纹身"
+              "panel": 1,
+              "dialogue": {
+                "character": "店长",
+                "line": "规则写得很清楚——（敲击计时器10:20）超时就是超时！",
+                "action_description": "擦拭柜台，指缝闪过保险纹身"
+              }
             },
             {
-              "character": "店长",
-              "line": "根据条款第37条，你们得赔杯子的钱..."
+              "panel": 1,
+              "dialogue": {
+                "character": "店长",
+                "line": "根据条款第37条，你们得赔杯子的钱..."
+              }
             },
             {
-              "character": "醉酒参赛者",
-              "line": "你这个人怎么不遵守规矩，我特地从城区跑来你们这个地方参加比赛，谁能想到你如此耍赖！",
-              "metadata": { "emotion": "非常愤怒" }
+              "panel": 1,
+              "dialogue": {
+                "character": "醉酒参赛者",
+                "line": "你这个人怎么不遵守规矩，我特地从城区跑来你们这个地方参加比赛，谁能想到你如此耍赖！",
+                "metadata": { "emotion": "非常愤怒" }
+              }
             },
             {
-              "character": "伯尼斯",
-              "line": "哇！这个齿轮组也是燃油饮的形状——",
-              "action_description": "踮脚凑近计时器，瞳孔映出齿轮虚影"
+              "panel": 1,
+              "dialogue": {
+                "character": "伯尼斯",
+                "line": "哇！这个齿轮组也是燃油饮的形状——",
+                "action_description": "踮脚凑近计时器，瞳孔映出齿轮虚影"
+              }
             },
             {
-              "character": "派派",
-              "line": "现在的年轻人啊...（慢悠悠叹气）喝个饮料还要吵架...",
-              "action_description": "瘫坐在燃油饮桶上"
+              "panel": 1,
+              "dialogue": {
+                "character": "派派",
+                "line": "现在的年轻人啊...（慢悠悠叹气）喝个饮料还要吵架...",
+                "action_description": "瘫坐在燃油饮桶上"
+              }
             },
             {
-              "character": "派派",
-              "line": "想当年我修车时...诶，怎么地面震感那么严重",
-              "action_description": "用扳手敲击地面"
+              "panel": 1,
+              "dialogue": {
+                "character": "派派",
+                "line": "想当年我修车时...诶，怎么地面震感那么严重",
+                "action_description": "用扳手敲击地面"
+              }
             }
           ]
         },
@@ -331,7 +348,7 @@
       "events": [
         {
           "type": "narration",
-          "text": "为了避免矿区的塌陷，一行人又赶快来到了矿区。但是到来的时候却发现这里非常混乱。矿工防护服印着“以太远洋保险”字样，岩壁上贴满保险广告传单。"
+          "text": "为了避免矿区的塌陷，一行人又赶快来到了矿区。但是到来的时候却发现这里非常混乱。矿工防护服印着\"以太远洋保险\"字样，岩壁上贴满保险广告传单。"
         },
         {
           "type": "dialogue_free_view",
@@ -342,7 +359,12 @@
         {
           "type": "comic_panel",
           "asset_ref": "comic_mine_action_panel_1",
-          "description": "[派派用扳手卡住滚落的巨石，伯妮斯拽着铃跳上悬浮的传送带]",
+          "content_overlay": [
+            {
+              "panel": 1,
+              "narration": "[派派用扳手卡住滚落的巨石，伯妮斯拽着铃跳上悬浮的传送带]"
+            }
+          ],
           "interaction": "click_to_continue"
         },
         {
@@ -555,7 +577,7 @@
         {
           "type": "cg_animation",
           "asset_ref": "cg_boss_defeat_final_blow",
-          "description": "派派一击砍下大boss的手臂，“把我的雨刮器还给我！再也不接改装单了！！”",
+          "description": "派派一击砍下大boss的手臂，\"把我的雨刮器还给我！再也不接改装单了！！\"",
           "interaction": "click_to_continue"
         }
       ]
@@ -578,7 +600,7 @@
           "sequence": [
             {
               "character": "伯尼斯",
-              "line": "这新钟声够劲！比之前死气沉沉的‘铛铛铛’好多了！（模仿引擎轰鸣）轰隆隆——！耳朵都要怀孕了！"
+              "line": "这新钟声够劲！比之前死气沉沉的'铛铛铛'好多了！（模仿引擎轰鸣）轰隆隆——！耳朵都要怀孕了！"
             },
             {
               "character": "铃",

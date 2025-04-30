@@ -6,13 +6,19 @@ const narrationTextEl = document.getElementById("narration-text");
 function renderNarration(eventData) {
   console.log("Rendering Narration. Event Data:", eventData);
 
-  if (!eventData || typeof eventData.text !== "string") {
-    console.error("Invalid narration event data");
+  // Check for either 'text' or 'description'
+  const narrationContent = eventData.text || eventData.description;
+
+  if (!eventData || typeof narrationContent !== "string") {
+    console.error(
+      "Invalid narration event data: Missing 'text' or 'description'",
+      eventData
+    );
     viewContainer.classList.add("hidden");
     return;
   }
 
-  narrationTextEl.textContent = eventData.text;
+  narrationTextEl.textContent = narrationContent; // Use the found content
 
   // Show the narration view container
   viewContainer.classList.remove("hidden");
