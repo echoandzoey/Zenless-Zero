@@ -19,45 +19,77 @@ function renderComicPanel(eventData) {
   // Clear previous content
   viewContainer.innerHTML = "";
 
-  // Assuming 'content_overlay' contains items with 'panel', 'dialogue', or 'narration'
-  // We might need a more sophisticated grouping by panel number later
+  // 1. Group content items by panel number
+  const panelsGrouped = {};
   eventData.content_overlay.forEach((item) => {
-    const panelElement = document.createElement("div");
-    panelElement.classList.add("panel"); // Use styles from styles.css
-
-    if (item.dialogue) {
-      const dialogue = item.dialogue;
-      const characterNameEl = document.createElement("span");
-      characterNameEl.classList.add("character-name");
-      // Basic character name to class mapping (can be expanded)
-      const characterClass = dialogue.character
-        .toLowerCase()
-        .replace(/[^a-z0-9]/g, "-"); // Simple slugify
-      characterNameEl.classList.add(characterClass); // Add class like 'drunk', 'shop-owner'
-      characterNameEl.textContent = dialogue.character;
-
-      const speechBubbleEl = document.createElement("div");
-      speechBubbleEl.classList.add("speech-bubble");
-      speechBubbleEl.textContent = dialogue.line;
-
-      panelElement.appendChild(characterNameEl);
-      panelElement.appendChild(speechBubbleEl);
-
-      if (dialogue.action_description) {
-        const actionEl = document.createElement("p");
-        actionEl.classList.add("character-action");
-        actionEl.textContent = dialogue.action_description;
-        panelElement.appendChild(actionEl);
-      }
-    } else if (item.narration) {
-      const narrationEl = document.createElement("p");
-      // Add a specific class for narration styling if needed
-      narrationEl.textContent = item.narration;
-      panelElement.appendChild(narrationEl);
+    const panelNum = item.panel || 1; // Default to panel 1 if number is missing
+    if (!panelsGrouped[panelNum]) {
+      panelsGrouped[panelNum] = [];
     }
-    // Append the constructed panel to the main view container
-    // This avoids the 'insertBefore null' error by simply adding to the end.
-    viewContainer.appendChild(panelElement);
+    panelsGrouped[panelNum].push(item);
+  });
+
+  // 2. Get sorted panel numbers
+  const sortedPanelNumbers = Object.keys(panelsGrouped).sort(
+    (a, b) => parseInt(a) - parseInt(b)
+  );
+
+  // 3. Create and populate panel elements for each group
+  sortedPanelNumbers.forEach((panelNum) => {
+    const itemsForPanel = panelsGrouped[panelNum];
+    let dialogueCounter = 0; // Counter for dialogues within this panel
+
+    // Create the main container for this logical panel
+    const panelContainer = document.createElement("div");
+    panelContainer.classList.add("panel"); // Use styles from styles.css
+    // Optionally add data attribute for styling/debugging: panelContainer.dataset.panelNumber = panelNum;
+
+    // Add content items (dialogue, narration) to this panel container
+    itemsForPanel.forEach((item) => {
+      if (item.dialogue) {
+        const dialogue = item.dialogue;
+        const dialogueWrapper = document.createElement("div"); // Wrapper for character + bubble
+        dialogueWrapper.classList.add("dialogue-item");
+
+        // Add alternating classes
+        dialogueWrapper.classList.add(
+          dialogueCounter % 2 === 0 ? "dialogue-even" : "dialogue-odd"
+        );
+        dialogueCounter++;
+
+        const characterNameEl = document.createElement("span");
+        characterNameEl.classList.add("character-name");
+        const characterClass = dialogue.character
+          .toLowerCase()
+          .replace(/[^a-z0-9]/g, "-");
+        characterNameEl.classList.add(characterClass);
+        characterNameEl.textContent = dialogue.character;
+
+        const speechBubbleEl = document.createElement("div");
+        speechBubbleEl.classList.add("speech-bubble");
+        speechBubbleEl.textContent = dialogue.line;
+
+        dialogueWrapper.appendChild(characterNameEl);
+        dialogueWrapper.appendChild(speechBubbleEl);
+
+        if (dialogue.action_description) {
+          const actionEl = document.createElement("p");
+          actionEl.classList.add("character-action");
+          actionEl.textContent = dialogue.action_description;
+          // Append action after the bubble, still within the dialogue wrapper
+          dialogueWrapper.appendChild(actionEl);
+        }
+        panelContainer.appendChild(dialogueWrapper); // Add the whole dialogue item
+      } else if (item.narration) {
+        const narrationEl = document.createElement("p");
+        narrationEl.classList.add("narration-box"); // Add a class for styling narration
+        narrationEl.textContent = item.narration;
+        panelContainer.appendChild(narrationEl);
+      }
+    });
+
+    // Append the fully constructed panel container to the main view
+    viewContainer.appendChild(panelContainer);
   });
 
   // Show the comic panel view container
