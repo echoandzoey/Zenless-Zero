@@ -1,51 +1,75 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Zenless Zero Narrative</title>
-    <link rel="stylesheet" href="style.css" />
+    <title>外环风波：燃油、时间与保险 - 战斗场景</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #111;
+        color: #fff;
+        padding: 20px;
+        text-align: center;
+      }
+      h1 {
+        color: #f5d742;
+        margin-bottom: 30px;
+      }
+      .combat-links {
+        max-width: 600px;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+      }
+      .combat-link {
+        display: block;
+        padding: 15px;
+        background-color: #333;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+        transition: all 0.3s;
+        border: 1px solid #555;
+      }
+      .combat-link:hover {
+        background-color: #c42222;
+        transform: scale(1.02);
+      }
+      .combat-desc {
+        font-size: 14px;
+        color: #aaa;
+        margin-top: 8px;
+      }
+    </style>
   </head>
   <body>
-    <div id="game-container">
-      <!-- Container for Mobile Chat UI -->
-      <div id="mobile-chat-view" class="view-container hidden">
-        <div id="chat-history-header">Mobile Chat</div>
-        <div id="chat-message-list">
-          <!-- Messages will be appended here by JS -->
-        </div>
-        <div class="interaction-hint">Click to continue...</div>
-      </div>
+    <h1>外环风波：燃油、时间与保险</h1>
+    <div class="combat-links">
+      <a
+        href="combat-player.html?encounter=hollow_rescue_1"
+        class="combat-link"
+      >
+        空洞救援战斗
+        <div class="combat-desc">三人组前往空洞拯救参赛选手</div>
+      </a>
 
-      <!-- Container for Narration UI -->
-      <div id="narration-view" class="view-container hidden">
-        <p id="narration-text"></p>
-        <div class="interaction-hint">Click to continue...</div>
-      </div>
+      <a
+        href="combat-player.html?encounter=mine_hollow_eikons_1"
+        class="combat-link"
+      >
+        矿区空洞战斗
+        <div class="combat-desc">派派和伯尼斯在矿区的战斗</div>
+      </a>
 
-      <!-- Container for Fixed Dialogue UI (Non-Mobile) -->
-      <div id="dialogue-fixed-view" class="view-container hidden">
-        <!-- This inner div now holds the visible content at the bottom -->
-        <div class="dialogue-box-content">
-          <div id="fixed-dialogue-box">
-            <span id="fixed-dialogue-character">Character:</span>
-            <p id="fixed-dialogue-line">Dialogue line...</p>
-            <div id="fixed-dialogue-action" class="action-description">
-              Action description...
-            </div>
-          </div>
-          <div class="interaction-hint">Click to continue...</div>
-        </div>
-      </div>
-
-      <!-- Container for Comic Panel UI -->
-      <div id="comic-panel-view" class="view-container hidden comic-grid">
-        <!-- Comic panels will be dynamically added here by comicPanelHandler.js -->
-      </div>
-
-      <!-- Add other containers as needed (Combat, CG, Comic, etc.) -->
+      <a
+        href="combat-player.html?encounter=boss_big_ben_insurancorp"
+        class="combat-link"
+      >
+        大本钟BOSS战
+        <div class="combat-desc">最终与大本钟Boss的决战</div>
+      </a>
     </div>
-
-    <script type="module" src="main.js"></script>
   </body>
 </html>

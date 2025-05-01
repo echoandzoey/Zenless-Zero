@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>战斗场景</title>
+    <link rel="stylesheet" href="combat-player.css" />
+  </head>
+  <body>
+    <div id="start-screen" class="start-screen">
+      <div class="start-content">
+        <h1>战斗准备</h1>
+        <button id="start-button" class="start-button">开始战斗</button>
+      </div>
+    </div>
+
+    <div id="combat-container" class="hidden">
+      <video id="combat-video" class="combat-video" playsinline></video>
+      <div id="dialogue-box" class="combat-dialogue"></div>
+      <button id="skip-button" class="skip-button">跳过</button>
+    </div>
+
+    <script src="combat-player.js"></script>
+  </body>
+</html>

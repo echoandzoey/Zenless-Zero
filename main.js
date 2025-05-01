@@ -4,6 +4,8 @@ import { renderMobileChat } from "./mobileChatHandler.js";
 import { renderNarration } from "./narrationHandler.js";
 import { renderDialogueFixedView } from "./dialogueFixedViewHandler.js";
 import { renderComicPanel } from "./comicPanelHandler.js";
+import { renderCombat, cleanupCombat } from "./combatHandler.js";
+import { renderCG, cleanupCG } from "./cgHandler.js";
 // Import other handlers as they are created
 // import { renderCombat } from './combatHandler.js';
 // import { renderCG } from './cgHandler.js';
@@ -28,6 +30,10 @@ async function initializeGame() {
     displayCurrentEvent();
     // Add main click listener to advance the narrative
     gameContainer.addEventListener("click", handleInteraction);
+
+    // Add global listeners for special events
+    document.addEventListener("combat:end", onCombatEnd);
+    document.addEventListener("cg:continue", onCGContinue);
   } else {
     console.error("Failed to initialize game or no scenes found.");
     gameContainer.innerHTML =
@@ -135,13 +141,16 @@ function displayCurrentEvent() {
     case "dialogue_fixed_view":
       renderDialogueFixedView(event, currentSequenceIndex);
       break;
-    // --- Add cases for other event types ---
-    // case 'combat':
-    //     renderCombat(event);
-    //     break;
-    // case 'cg_animation':
-    //     renderCG(event);
-    //     break;
+    case "combat":
+      renderCombat(event);
+      // Add a special listener for combat events
+      document.addEventListener("combat:end", onCombatEnd, { once: true });
+      break;
+    case "cg_animation":
+      renderCG(event);
+      // Add a special listener for CG events
+      document.addEventListener("cg:continue", onCGContinue, { once: true });
+      break;
     case "comic_panel":
       // Might need sequence index depending on implementation (currently unused by handler)
       renderComicPanel(event);
@@ -172,8 +181,22 @@ function showPlaceholder(message) {
   }
 }
 
+// Add event handlers for combat and CG events
+function onCombatEnd() {
+  cleanupCombat();
+  advanceNarrative();
+}
+
+function onCGContinue() {
+  cleanupCG();
+  advanceNarrative();
+}
+
+// Add cleanup when ending the game
 function endGame() {
   gameContainer.removeEventListener("click", handleInteraction);
+  document.removeEventListener("combat:end", onCombatEnd);
+  document.removeEventListener("cg:continue", onCGContinue);
   hideAllViews();
   gameContainer.innerHTML = '<h2 style="text-align: center;">The End</h2>';
   console.log("Game ended. Click listener removed.");
